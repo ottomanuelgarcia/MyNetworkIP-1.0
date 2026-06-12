@@ -1,0 +1,69 @@
+{
+  "name": "mynetworkip",
+  "version": "1.0.0",
+  "description": "Aplicativo desktop multiplataforma para gerenciamento de rede local",
+  "homepage": "https://github.com/ottomanuelgarcia/MyNetworkIP",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ottomanuelgarcia/MyNetworkIP.git"
+  },
+  "author": {
+    "name": "Otto Manuel Garcia Preval",
+    "email": "ottomanuelgarcia@gmail.com"
+  },
+  "license": "MIT",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "build": "vite build",
+    "start": "electron .",
+    "dist": "npm run build && electron-builder",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^8.2.0",
+    "electron": "^31.0.0",
+    "electron-builder": "^24.0.0",
+    "vite": "^5.4.10",
+    "wait-on": "^7.1.0"
+  },
+  "build": {
+    "appId": "com.mynetworkip.desktop",
+    "productName": "MyNetworkIP",
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Utility",
+      "maintainer": "Otto Manuel Garcia Preval <ottomanuelgarcia@gmail.com>",
+      "desktop": {
+        "Name": "MyNetworkIP",
+        "Comment": "Gerenciamento de rede local",
+        "Terminal": false,
+        "Type": "Application",
+        "Categories": "Utility;Network;Monitoring;"
+      }
+    },
+    "win": {
+      "target": [
+        "portable"
+      ]
+    }
+  }
+}
